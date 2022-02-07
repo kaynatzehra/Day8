@@ -1,17 +1,28 @@
 package com.bridgelabz.employeewage;
 public class EmployeeWage {
+    public static void main(String[] args) {
+
+        EmpCalculation dmart = new EmpCalculation("D-MART",20,2,10);
+        dmart.empCheck();
+        EmpCalculation reliance = new EmpCalculation("RELIANCE",10,4,20);
+        reliance.empCheck();
+
+    }
+}
+class EmpCalculation
+{
     public static final int IS_FULLTIME = 1;
     public static final int IS_PARTTIME = 2;
     public static int TOTAL_WAGE = 0;
-    public static void main(String[] args) {
-
-        EmployeeWage emp = new EmployeeWage();
-        emp.empCheck("D-MART",20,2,10);
-        emp.empCheck("RELIANCE",10,4,20);
-
+    static String company;
+    int empRatePerHour,numOfWorkingDays,maxHrsPerMonth;
+    EmpCalculation(String company, int empRatePerHour,int numOfWorkingDays,int maxHrsPerMonth){
+        EmpCalculation.company = company ;
+        this.empRatePerHour=empRatePerHour;
+        this.numOfWorkingDays=numOfWorkingDays;
+        this.maxHrsPerMonth=maxHrsPerMonth;
     }
-
-    public void empCheck(String company, int empRatePerHour,int numOfWorkingDays,int maxHrsPerMonth) {
+    public void empCheck() {
         int	workingDays = 0,empHrs = 0,totalHrs=0,totalDailyWage=0;
         while (workingDays < numOfWorkingDays  && totalHrs < maxHrsPerMonth) {
             workingDays++;
@@ -35,7 +46,7 @@ public class EmployeeWage {
             totalHrs = totalHrs + empHrs;
             TOTAL_WAGE = TOTAL_WAGE + totalDailyWage;
         }
-        System.out.println("Total Wage of "+company+"'s employees in a month = "+TOTAL_WAGE);
+        System.out.println("Total Wage of "+EmpCalculation.company+"'s employees in a month = "+EmpCalculation.TOTAL_WAGE);
 
     }
 
